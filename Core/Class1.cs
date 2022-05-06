@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entity
+namespace Core
 {
     public class Class1
     {

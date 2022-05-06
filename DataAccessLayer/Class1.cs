@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entity
+namespace DataAccess
 {
     public class Class1
     {
