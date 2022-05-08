@@ -11,14 +11,14 @@ namespace DataAccess.Repositories
 {
     public class BlogRepository : IBlogDL
     {
-        public void AddBlog(Blog blog)
+        public void Insert(Blog blog)
         {
             using var c = new Context();
             c.Add(blog);
             c.SaveChanges();
         }
 
-        public void DeleteBlog(Blog blog)
+        public void Delete(Blog blog)
         {
             using var c = new Context();
             c.Remove(blog);
@@ -31,13 +31,14 @@ namespace DataAccess.Repositories
             return c.Blogs.Find(id);
         }
 
-        public List<Blog> ListAllBlog()
+
+        public List<Blog> GetListAll()
         {
             using var c = new Context();
             return c.Blogs.ToList();
         }
 
-        public void UpdateBlog(Blog blog)
+        public void Update(Blog blog)
         {
             using var c = new Context();
             c.Update(blog);
