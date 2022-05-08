@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-   public interface ICategoryDL:IGenericDL<Category>
+    public interface IWriterDL: IGenericDL<Writer>
     {
-        
     }
 }
