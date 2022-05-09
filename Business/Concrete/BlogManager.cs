@@ -32,9 +32,19 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Blog> GetBlogListWithCategory()
+        {
+            return  _blogDL.GetListwithCategory();
+        }
+
         public Blog GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Blog> GetBlogByID(int id)
+        {
+            return _blogDL.GetListAll(x => x.BlogID == id);
         }
 
         public List<Blog> GetList()
