@@ -18,7 +18,7 @@ namespace Business.Concrete
         }
         public void CommentAdd(Comment comment)
         {
-            throw new NotImplementedException();
+            _commentdl.Insert(comment);
         }
 
         public List<Comment> GetList(int id)
