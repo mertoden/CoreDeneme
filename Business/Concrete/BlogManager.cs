@@ -52,6 +52,11 @@ namespace Business.Concrete
             return _blogDL.GetListAll();
         }
 
+        public List<Blog> GetLast3Blog()
+        {
+            return _blogDL.GetListAll().Take(3).ToList();
+        }
+
         public List<Blog> GetBlogListWithWriter(int id)
         {
             return _blogDL.GetListAll(x => x.WriterID == id);

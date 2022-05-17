@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace CoreDeneme.Controllers
 {
 
-    [Authorize]
+
     public class WriterController : Controller
     {
-        [AllowAnonymous]
+
         public IActionResult Index()
         {
             return View();
