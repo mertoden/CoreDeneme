@@ -18,22 +18,7 @@ namespace Business.Concrete
         {
             _categoryDL = categoryDL;
         }
-        public void CategoryAdd(Category category)
-        {
-            _categoryDL.Insert(category);
-        }
-
-        public void CategoryDelete(Category category)
-        {
-            _categoryDL.Delete(category);
-        }
-
-        public void CategoryUpdate(Category category)
-        {
-            _categoryDL.Update(category);
-        }
-
-        public Category GetById(int id)
+        public Category TGetById(int id)
         {
             return _categoryDL.GetById(id);
         }
@@ -41,6 +26,21 @@ namespace Business.Concrete
         public List<Category> GetList()
         {
             return _categoryDL.GetListAll();
+        }
+
+        public void TAdd(Category t)
+        {
+            _categoryDL.Insert(t);
+        }
+
+        public void TDelete(Category t)
+        {
+            _categoryDL.Delete(t);
+        }
+
+        public void TUpdate(Category t)
+        {
+            _categoryDL.Update(t);
         }
     }
 }

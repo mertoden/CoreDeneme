@@ -29,5 +29,13 @@ namespace CoreDeneme.Controllers
         {
             return View();
         }
+        public PartialViewResult writerNavbarPartial()
+        {
+            return PartialView();
+        }
+        public PartialViewResult writerFooterPartial()
+        {
+            return PartialView();
+        }
     }
 }
