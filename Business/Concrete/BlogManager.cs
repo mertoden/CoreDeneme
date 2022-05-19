@@ -66,7 +66,7 @@ namespace Business.Concrete
 
         public void TUpdate(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDL.Update(t);
         }
     }
 }
