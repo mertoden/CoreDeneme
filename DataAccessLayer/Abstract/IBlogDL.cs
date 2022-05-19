@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
     public interface IBlogDL:IGenericDL<Blog>
     {
         List<Blog> GetListwithCategory();
+        List<Blog> GetListWithCategoryByWriter(int id);
     }
 }

@@ -18,9 +18,29 @@ namespace Business.Concrete
             _aboutDL = aboutDL;
         }
 
+        public About TGetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<About> GetList()
         { 
             return _aboutDL.GetListAll();
+        }
+
+        public void TAdd(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TDelete(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(About t)
+        {
+            throw new NotImplementedException();
         }
     }
 }
