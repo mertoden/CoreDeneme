@@ -12,5 +12,10 @@ namespace CoreDeneme.Controllers
         {
             return View();
         }
+
+        public PartialViewResult AdminNavbarPartial()
+        {
+            return PartialView();
+        }
     }
 }
