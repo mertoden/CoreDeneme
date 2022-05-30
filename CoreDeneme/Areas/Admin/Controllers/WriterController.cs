@@ -21,6 +21,34 @@ namespace CoreDeneme.Areas.Admin.Controllers
             var JsonWriters = JsonConvert.SerializeObject(writers);
             return Json(JsonWriters);
         }
+        public IActionResult GetWriterById(int writerid)
+        {
+            var findwriter = writers.FirstOrDefault(x => x.Id == writerid);
+            var jsonwriters = JsonConvert.SerializeObject(findwriter);
+            return Json(jsonwriters);
+        }
+        [HttpPost]
+        public IActionResult AddWriter(WriterClass w)
+        {
+            writers.Add(w);
+            var jsonWriters = JsonConvert.SerializeObject(w);
+            return Json(jsonWriters);
+        }
+
+        public IActionResult DeleteWriter( int id)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == id);
+            writers.Remove(writer);
+            return Json(writer);
+        }
+
+        public IActionResult UpdateWriter(WriterClass w)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == w.Id);
+            writer.Name = w.Name;
+            var jsonWriter = JsonConvert.SerializeObject(w);
+            return Json(jsonWriter);
+        }
 
         public static List<WriterClass> writers = new List<WriterClass>
         {
@@ -38,6 +66,11 @@ namespace CoreDeneme.Areas.Admin.Controllers
             {
                 Id=3,
                 Name="Olcay"
+            },
+            new WriterClass
+            {
+                Id=4,
+                Name="Cengiz"
             }
         };
     }
