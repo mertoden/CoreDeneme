@@ -7,11 +7,38 @@
 <h1>Author AJAX Actions</h1>
 <br />
 <button type="button" id="btngetlist" class="btn btn-outline-primary">Author List</button>
+<button type="button" id="btngetbyid" class="btn btn-outline-success">Bring Writer</button>
+<button type="button" id="btnaddwriter" class="btn btn-outline-info">Add Writer</button>
+<button type="button" id="btndeletewriter" class="btn btn-outline-danger">Delete Writer</button>
+<button type="button" id="btnupdatewriter" class="btn btn-outline-warning">Update Writer</button>
 <br />
 <br />
 <div id="writerlist">
-    Yazarlar Gelecek
+    
 </div>
+<br />
+<div id="writerget">
+    
+</div>
+<br />
+<div>
+    <input type="text" id="writerid" placeholder="Please enter the id of the author " class="form-control" />
+</div>
+<br />
+<br />
+<div>
+    <input type="text" class="form-control" id="txtWriterId" placeholder="Please enter the id of the author"/>
+    <input type="text" class="form-control" id="txtWriterName" placeholder="Please enter the name of the author"/>
+    <br />
+</div>
+<br />
+<div>
+    <input type="text" class="form-control" id="txtid" placeholder="Enter the ID of the Author to be Deleted" />
+</div>
+<br />
+<input type="text" id="txtid1" class="form-control" placeholder="ID to update"/>
+<input type="text" id="txtwritername1" class="form-control" placeholder="Name to update"/>
+
 @section scripts{
     <script>
 
@@ -23,13 +50,75 @@
                 url: "/Admin/Writer/WriterList",
                 success: function (func) {
                     let w = jQuery.parseJSON(func);
-                    console.log(w);
                     let tablehtml = "<table class=table table-bordered> <tr><th> Yazar ID</th> <th> Yazar Adı </th> </tr>";
                     $.each(w, (index, value) => {
                         tablehtml += `<tr><td>${value.Id}</td> <td>${value.Name}</td></tr>`
                     });
                     tablehtml += "</table>";
                     $("#writerlist").html(tablehtml);
+                }
+            });
+        });
+
+        $("#btngetbyid").click(x => {
+            let id = $("#writerid").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "get",
+                url: "/Admin/Writer/GetWriterById",
+                data: { writerid: id },
+                success: function (func) {
+                    let w = jQuery.parseJSON(func);
+
+                    let getvalue = `<table class=table table-bordered> <tr> <th> Author ID </th> <th>Author Name </th> </tr> <tr><td>${w.Id}</td><td>${w.Name}</td></tr></table>`;
+                    $("#writerget").html(getvalue);
+
+                }
+            });
+        });
+
+        $("#btnaddwriter").click(function () {
+            let writer = {
+                Id: $("#txtWriterId").val(),
+                Name: $("#txtWriterName").val()
+            };
+            $.ajax({
+                type: "post",
+                url: "/Admin/Writer/AddWriter/",
+                data: writer,
+                success: function (func) {
+                    let result = jQuery.parseJSON(func);
+                    alert("Adding Author Successfully");
+                }
+            });
+        });
+
+        $("#btndeletewriter").click(x => {
+            let id = $("#txtid").val();
+
+            $.ajax({
+                url: "/Admin/Writer/DeleteWriter/" + id,
+                type: "post",
+                datatype: "json",
+                success: function (func) {
+                    alert("Author Deletion Deletion Successful");
+                }
+            });
+        });
+
+        $("#btnupdatewriter").click(function () {
+            let writer = {
+                Id: $("#txtid1").val(),
+                Name: $("#txtwritername1").val()
+            };
+
+            $.ajax({
+                type: "post",
+                url: "/Admin/Writer/UpdateWriter/",
+                data: writer,
+                success: function (func) {
+                    alert("Update is Success");
                 }
             });
         });
