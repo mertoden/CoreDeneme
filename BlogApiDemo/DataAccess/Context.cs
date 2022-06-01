@@ -8,5 +8,12 @@ namespace BlogApiDemo.DataAccess
 {
     public class Context: DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("server=DESKTOP-T5U2SAE;database=CoreBlogApiDb; integrated security = true;");
+
+        }
+
+        DbSet<Employee> Employees { get; set; }
     }
 }
