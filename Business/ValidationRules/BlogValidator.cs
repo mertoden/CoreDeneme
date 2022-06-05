@@ -15,7 +15,7 @@ namespace Business.ValidationRules
             RuleFor(x => x.BlogTitle).NotEmpty().WithMessage("Blog title cannot be empty");
             RuleFor(x => x.BlogContent).NotEmpty().WithMessage("Blog content cannot be empty");
             RuleFor(x => x.BlogImage).NotEmpty().WithMessage("Blog image cannot be empty");
-            RuleFor(x => x.BlogTitle).MaximumLength(5).WithMessage("Please enter a maximum of 4 characters.");
+            RuleFor(x => x.BlogTitle).MaximumLength(30).WithMessage("Please enter a maximum of 30 characters.");
         }
     }
 }
