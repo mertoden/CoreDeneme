@@ -18,9 +18,30 @@ namespace Business.Concrete
             _newsletterDL = newsletterDL;
         }
 
-        public void AddNewsLatter(NewsLetter newsLetter)
+
+        public List<NewsLetter> GetList()
         {
-            _newsletterDL.Insert(newsLetter);
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(NewsLetter t)
+        {
+            _newsletterDL.Insert(t);
+        }
+
+        public void TDelete(NewsLetter t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public NewsLetter TGetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(NewsLetter t)
+        {
+            throw new NotImplementedException();
         }
     }
 }
