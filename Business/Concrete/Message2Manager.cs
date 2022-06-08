@@ -19,7 +19,7 @@ public Message2Manager(IMessage2DL messageDL)
 
         public List<Message2> GetInboxByWriter(int id)
         {
-            return _messageDL.GetListWithMessageByWriter(id);
+            return _messageDL.GetInboxWithMessageByWriter(id);
         }
 
         public List<Message2> GetList()
@@ -27,9 +27,14 @@ public Message2Manager(IMessage2DL messageDL)
             return _messageDL.GetListAll();
         }
 
+        public List<Message2> GetSendBoxByWriter(int id)
+        {
+            return _messageDL.GetSendboxWithMessageByWriter(id);
+        }
+
         public void TAdd(Message2 t)
         {
-            throw new NotImplementedException();
+            _messageDL.Insert(t);
         }
 
         public void TDelete(Message2 t)
