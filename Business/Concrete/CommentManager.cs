@@ -21,6 +21,12 @@ namespace Business.Concrete
             _commentdl.Insert(comment);
         }
 
+        public List<Comment> GetCommentWithBlog()
+        {
+            return _commentdl.GetListwithBlog();
+            
+        }
+
         public List<Comment> GetList(int id)
         {
             return _commentdl.GetListAll(x => x.BlogID == id);

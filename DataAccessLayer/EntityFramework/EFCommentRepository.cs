@@ -1,6 +1,8 @@
 ﻿using DataAccess.Abstract;
+using DataAccess.Concrete;
 using DataAccess.Repositories;
 using Entity.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityFramework
 {
-   public class EFCommentRepository: GenericRepository<Comment>, ICommentDL
+    public class EFCommentRepository : GenericRepository<Comment>, ICommentDL
     {
+        public List<Comment> GetListwithBlog()
+        {
+            using (var c = new Context())
+            {
+                return c.Comments.Include(x => x.Blog).ToList();
+            }
+        }
     }
 }
