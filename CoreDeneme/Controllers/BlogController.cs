@@ -7,9 +7,12 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CoreDeneme.Controllers
@@ -20,6 +23,13 @@ namespace CoreDeneme.Controllers
         BlogManager bm = new BlogManager(new EFBlogRepository());
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
         Context c = new Context();
+
+        private readonly IStringLocalizer<BlogController> _localizer;
+
+        public BlogController(IStringLocalizer<BlogController> localizer)
+        {
+            _localizer = localizer;
+        }
 
         [AllowAnonymous]
         public IActionResult Index()

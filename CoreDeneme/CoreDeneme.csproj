@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Resources\Controllers\" />
     <Folder Include="wwwroot\WriterImageFiles\" />
   </ItemGroup>
 

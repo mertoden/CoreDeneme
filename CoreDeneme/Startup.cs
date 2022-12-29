@@ -11,8 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace CoreDeneme
 {
@@ -32,6 +35,27 @@ namespace CoreDeneme
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
 
+            services.AddLocalization();
+            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+            services.Configure<RequestLocalizationOptions>(opt => { 
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("tr-TR"),
+                new CultureInfo("ar-SA")
+            };
+                opt.DefaultRequestCulture = new RequestCulture("tr-TR");
+                opt.SupportedCultures = supportedCultures;
+                opt.SupportedUICultures = supportedCultures;
+
+                opt.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider(),
+                    new AcceptLanguageHeaderRequestCultureProvider()
+                };
+            });
+
 
 
             services.AddMvc(config =>
@@ -42,7 +66,11 @@ namespace CoreDeneme
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddMvc();
+            
+            services.AddMvc()
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
@@ -81,6 +109,10 @@ namespace CoreDeneme
             app.UseRouting();
 
             app.UseAuthorization();
+
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+
 
             app.UseEndpoints(endpoints =>
             {
